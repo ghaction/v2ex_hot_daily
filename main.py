@@ -10,7 +10,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-dataDir = "./data"
+dataDir = "." + os.sep + "data"
 
 def get_hot_list():
     ret = []
@@ -64,8 +64,8 @@ def get_hot_list():
 
 def getDir(time, prefix):
 
-    yearDir = dataDir + "/" + prefix+ "/" + str(time.year)
-    monthDir = yearDir + "/" + str(time.month)
+    yearDir = dataDir + os.sep + prefix+ os.sep + str(time.year)
+    monthDir = yearDir + os.sep + str(time.month)
 
     if not os.path.exists(monthDir):
         os.makedirs(monthDir)
@@ -75,7 +75,7 @@ def getDir(time, prefix):
 def save_json_data(data, now):
     monthDir = getDir(now, "json")
 
-    jsonFile = monthDir + "/" + str(now.day) + ".json"
+    jsonFile = monthDir + os.sep + str(now.day) + ".json"
 
     with open(jsonFile, "w") as f:
         
@@ -85,9 +85,9 @@ def save_json_data(data, now):
 def save_md_data(data, now):
     monthDir = getDir(now, "md")
 
-    jsonFile = monthDir + "/" + str(now.day) + ".md"
+    mdFile = monthDir + os.sep + str(now.day) + ".md"
 
-    with codecs.open(jsonFile, "w", "utf-8") as f:
+    with codecs.open(mdFile, "w", "utf-8") as f:
 
         f.write("# " + str(now.year) + "-" + str(now.month) + "-" + str(now.day) + " v2ex热点列表\r\n")
         f.write("\r\n")
