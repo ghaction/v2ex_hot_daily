@@ -64,8 +64,8 @@ def get_hot_list():
 
 def getDir(time, prefix):
 
-    yearDir = dataDir + os.sep + prefix+ os.sep + str(time.year)
-    monthDir = yearDir + os.sep + str(time.month)
+    yearDir = dataDir + os.sep + prefix + os.sep + str(time.strftime("%Y"))
+    monthDir = yearDir + os.sep + str(time.strftime("%m"))
 
     if not os.path.exists(monthDir):
         os.makedirs(monthDir)
@@ -75,7 +75,7 @@ def getDir(time, prefix):
 def save_json_data(data, now):
     monthDir = getDir(now, "json")
 
-    jsonFile = monthDir + os.sep + str(now.day) + ".json"
+    jsonFile = monthDir + os.sep + str(now.strftime("%d")) + ".json"
 
     with open(jsonFile, "w") as f:
         
@@ -85,7 +85,7 @@ def save_json_data(data, now):
 def save_md_data(data, now):
     monthDir = getDir(now, "md")
 
-    mdFile = monthDir + os.sep + str(now.day) + ".md"
+    mdFile = monthDir + os.sep + str(now.strftime("%d")) + ".md"
 
     with codecs.open(mdFile, "w", "utf-8") as f:
 
