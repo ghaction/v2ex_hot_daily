@@ -23,8 +23,10 @@ bash git_push.sh
 
 ### crontab示例
 ```
-# 每日8点、16点、23点的45分时，抓取数据并提交到github上
-45 8,16,23 * * * cd /root/tool/v2ex-host-daily && bash git_push.sh >> /tmp/push.log 2>&1
+# 每隔1个小时，抓取数据
+00 */1 * * * cd /root/tool/v2ex-host-daily && bash get_data.sh >> /tmp/push.log 2>&1
+# 每日23点的45分时，提交到github上
+45 23 * * * cd /root/tool/v2ex-host-daily && bash git_push.sh >> /tmp/push.log 2>&1
 ```
 
 
