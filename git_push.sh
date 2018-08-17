@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pipenv run python main.py
-
 git pull
 
 git add ./data/md
