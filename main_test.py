@@ -12,3 +12,7 @@ class TestDict(unittest.TestCase):
         targetDir = main.getDir(time, prefix)
 
         self.assertTrue(os.path.exists(targetDir))
+    
+    def test_getHotList(self):
+        retList = main.get_hot_list()
+        self.assertTrue(len(retList) > 0)
