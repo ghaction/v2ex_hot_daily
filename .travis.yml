@@ -1,7 +1,9 @@
 language: python
 python:
-    - "3.6"
+    - "2.7"
 install:
     - pip install pipenv --upgrade
     - pipenv install --dev --skip-lock
-script:true
+script:
+    - pipenv run python -m unittest main_test
+
