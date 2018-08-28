@@ -4,6 +4,8 @@ python:
 install:
     - pip install pipenv --upgrade
     - pipenv install --dev --skip-lock
+    - pip install codecov
 script:
-    - pipenv run python -m unittest main_test
-
+    - coverage run main_test.py
+after_success:
+      - codecov
