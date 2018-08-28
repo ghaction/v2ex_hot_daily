@@ -1,5 +1,6 @@
 # v2ex每日热点列表
 [![Build Status](https://travis-ci.org/w169q169/v2ex_hot_daily.svg?branch=master)](https://travis-ci.org/w169q169/v2ex_hot_daily)
+[![Code Coverage](https://codecov.io/gh/w169q169/v2ex_hot_daily/branch/master/graph/badge.svg)](https://codecov.io/gh/w169q169/v2ex_hot_daily)
 >抓取并保存了[v2ex](https://www.v2ex.com/)的每日热点列表，按年月日保存成markdown文件。
 
 ## 安装
