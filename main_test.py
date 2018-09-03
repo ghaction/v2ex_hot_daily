@@ -47,7 +47,14 @@ class TestDict(unittest.TestCase):
 
     @mock.patch("codecs.open")
     def test_saveMdData(self, mock_open):
-        data = []
+        data = [
+            {
+                "url": "https://www.v2ex.com/t/485555#reply158",
+                "title": "石锤 github 买 star 行为",
+                "replyNum": "158",
+                "imgsrc": "//cdn.v2ex.com/gravatar/e21e7df9e540facf2c166961b73cbbbe?s=48&d=retro"
+            }
+        ]
         dateStr = '1991-10-10 23:40:00'
         time = datetime.strptime(dateStr, "%Y-%m-%d %H:%M:%S")
 
