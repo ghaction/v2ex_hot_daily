@@ -38,7 +38,7 @@ class TestDict(unittest.TestCase):
         targetDir = main.getDir(time, prefix)
         mock_makedirs.assert_called_once_with(targetDir)
 
-    @mock.patch("os.open")
+    @mock.patch("io.open")
     def test_saveJsonData(self, mock_open):
         data = []
         json_file = "./data/json/1991/01/01.json"

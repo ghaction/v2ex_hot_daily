@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 import json
 import codecs
-
+import io
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -72,9 +72,9 @@ def getDir(time, prefix):
     return monthDir
 
 def save_json_data(data, json_file):
-    with os.open(json_file, "w") as f:
+    with io.open(json_file, "w") as f:
         jsonData = json.dumps(data)
-        f.write(jsonData)
+        f.write(unicode(jsonData))
 
 def save_md_data(data, now, md_file):
     with codecs.open(md_file, "w", "utf-8") as f:
