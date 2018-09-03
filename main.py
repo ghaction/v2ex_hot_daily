@@ -91,7 +91,7 @@ def save_md_data(data, now, md_file):
             f.write("[" + item["replyNum"] +"]")
             f.write("\r\n")
 
-if __name__ == "__main__":
+def run():
     now = datetime.now()
     data = get_hot_list()
 
@@ -103,5 +103,7 @@ if __name__ == "__main__":
     md_file = getDir(now, "md") + os.sep + str(now.strftime("%d")) + ".md"
 
     save_json_data(data, json_file)
-    save_md_data(data, md_file)
+    save_md_data(data, now, md_file)
 
+if __name__ == "__main__":
+    run()
