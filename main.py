@@ -20,7 +20,7 @@ def get_hot_list():
     res = requests.get(url)
 
     if res.status_code != requests.codes.ok:
-        print("get http content not success:" + res.status_code)
+        print("get http content not success:" + str(res.status_code))
         return ret
   
     doc = pq(res.text)
@@ -57,7 +57,6 @@ def get_hot_list():
                 item["replyNum"] = ii.find('a').text()
 
         
-        print(item)
         ret.append(item)
 
     return ret
