@@ -71,23 +71,13 @@ def getDir(time, prefix):
 
     return monthDir
 
-def save_json_data(data, now):
-    monthDir = getDir(now, "json")
-
-    jsonFile = monthDir + os.sep + str(now.strftime("%d")) + ".json"
-
-    with open(jsonFile, "w") as f:
-        
+def save_json_data(data, json_file):
+    with os.open(json_file, "w") as f:
         jsonData = json.dumps(data)
         f.write(jsonData)
 
-def save_md_data(data, now):
-    monthDir = getDir(now, "md")
-
-    mdFile = monthDir + os.sep + str(now.strftime("%d")) + ".md"
-
-    with codecs.open(mdFile, "w", "utf-8") as f:
-
+def save_md_data(data, now, md_file):
+    with codecs.open(md_file, "w", "utf-8") as f:
         f.write("# " + str(now.year) + "-" + str(now.month) + "-" + str(now.day) + " v2ex热点列表\r\n")
         f.write("\r\n")
 
@@ -102,13 +92,16 @@ def save_md_data(data, now):
             f.write("\r\n")
 
 if __name__ == "__main__":
-     now = datetime.now()
-     data = get_hot_list()
+    now = datetime.now()
+    data = get_hot_list()
 
-     if len(data) == 0:
-         print("get hot list is zero")
-         os._exit(1)
+    if len(data) == 0:
+        print("get hot list is zero")
+        os._exit(1)
 
-     save_json_data(data, now)
-     save_md_data(data, now)
+    json_file = getDir(now, "json") + os.sep + str(now.strftime("%d")) + ".json"
+    md_file = getDir(now, "md") + os.sep + str(now.strftime("%d")) + ".md"
+
+    save_json_data(data, json_file)
+    save_md_data(data, md_file)
 
