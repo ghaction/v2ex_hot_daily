@@ -66,6 +66,40 @@ class TestDict(unittest.TestCase):
         retList = main.get_hot_list()
         self.assertTrue(len(retList) == 0)
 
+    @mock.patch("main.get_hot_list")
+    @mock.patch("main.getDir")
+    @mock.patch("main.save_json_data")
+    @mock.patch("main.save_md_data")
+    def test_run_failed(self, mock_save_md_data, mock_save_json_data, mock_getDir, mock_get_hot_list):
+        mock_get_hot_list.return_value = []
+        mock_getDir.return_value = "./data/md/1991/01/"
+        
+        main.run()
+        mock_save_md_data.assert_not_called()
+        mock_save_json_data.assert_not_called()
+        mock_getDir.assert_not_called()
+        mock_get_hot_list.assert_called_once()
+    
+    @mock.patch("main.get_hot_list")
+    @mock.patch("main.getDir")
+    @mock.patch("main.save_json_data")
+    @mock.patch("main.save_md_data")
+    def test_run_succ(self, mock_save_md_data, mock_save_json_data, mock_getDir, mock_get_hot_list):
+        mock_get_hot_list.return_value = [
+            {
+                "url": "https://www.v2ex.com/t/485555#reply158",
+                "title": "石锤 github 买 star 行为",
+                "replyNum": "158",
+                "imgsrc": "//cdn.v2ex.com/gravatar/e21e7df9e540facf2c166961b73cbbbe?s=48&d=retro"
+            }
+        ]
+        mock_getDir.return_value = "./data/md/1991/01/"
+        
+        main.run()
+        mock_save_md_data.assert_called_once()
+        mock_save_json_data.assert_called_once()
+        self.assertEqual(2, mock_getDir.call_count)
+        mock_get_hot_list.assert_called_once()
 
 if __name__ == '__main__':
     unittest.main()

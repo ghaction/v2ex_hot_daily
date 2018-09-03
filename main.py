@@ -97,7 +97,7 @@ def run():
 
     if len(data) == 0:
         print("get hot list is zero")
-        os._exit(1)
+        return
 
     json_file = getDir(now, "json") + os.sep + str(now.strftime("%d")) + ".json"
     md_file = getDir(now, "md") + os.sep + str(now.strftime("%d")) + ".md"
